@@ -1,6 +1,6 @@
 $themeColor: #3c8644;
 
-$pro: 320/375/20;
+$pro: 320/750/20;
 
 @function r($num){
     @return $num * $pro * 1rem;

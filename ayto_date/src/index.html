@@ -7,8 +7,76 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <meta name="screen-orientation" content="portrait">
     <meta name="x5-orientation" content="portrait">
+    <script>
+    //根据浏览器宽度给font-size赋值，rem。
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                window.clientWidth = docEl.clientWidth;
+                if (!window.clientWidth) return;
+                docEl.style.fontSize = 20 * (window.clientWidth / 320) + 'px';
+                window.base = 20 * (window.clientWidth / 320);
+            };
+        // Abort if browser does not support addEventListener
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+    //搞定辣鸡微信调整字体大小造成的错乱
+    (function () {
+        if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+            handleFontSize();
+        } else {
+            if (document.addEventListener) {
+                document.addEventListener("WeixinJSBridgeReady", handleFontSize, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("WeixinJSBridgeReady", handleFontSize);
+                document.attachEvent("onWeixinJSBridgeReady", handleFontSize);
+            }
+        }
+
+        function handleFontSize() {
+            // 设置网页字体为默认大小
+            WeixinJSBridge.invoke('setFontSizeCallback', {
+                'fontSize': 0
+            });
+            // 重写设置网页字体大小的事件
+            WeixinJSBridge.on('menu:setfont', function () {
+                WeixinJSBridge.invoke('setFontSizeCallback', {
+                    'fontSize': 0
+                });
+            });
+        }
+    })();
+    </script>
 </head>
 <body>
-
+<!--<div class="ayto-date-block">-->
+<!--    <div class="ayto-date-header">-->
+<!--        <div class="ayto-date-title">选择日期</div>-->
+<!--        <ul class="ayto-date-weeks">-->
+<!--            <li>日</li>-->
+<!--            <li>一</li>-->
+<!--            <li>二</li>-->
+<!--            <li>三</li>-->
+<!--            <li>四</li>-->
+<!--            <li>五</li>-->
+<!--            <li>六</li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="ayto-date-content">-->
+<!--        <p class="ayto-date-content-title">2019年5月</p>-->
+<!--        <div class="ayto-date-calendar-list">-->
+<!--            <ul class="ayto-date-calendar">-->
+<!--                <li>1</li>-->
+<!--            </ul>-->
+<!--            <p class="ayto-date-calendar-title">2019年6月</p>-->
+<!--            <ul class="ayto-date-calendar">-->
+<!--                <li>1</li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 </body>
 </html>

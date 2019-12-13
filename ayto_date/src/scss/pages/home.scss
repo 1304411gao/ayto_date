@@ -1,7 +1,105 @@
-body{
-    color: $activeColor;
+.ayto-date-block{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    @include borderR(5px 5px 0 0);
+    @include boxShadow(0 0 8px rgba(#000, .23));
 
+    ul{
+        padding-left: 0;
+        margin: 0;
+    }
+    li{
+        list-style: none;
+        margin: 0;
+    }
 
+    .ayto-date-header{
+        border-bottom: 1px solid #d7d7d7;
+        padding-bottom: 5px;
+        .ayto-date-title{
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+        }
+        .ayto-date-weeks{
+            margin-top: 5px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #555;
+            li{
+                width: 100/7 * 1%;
+                text-align: center;
+            }
+
+            li:first-child, li:last-child{
+                color: $themeColor;
+            }
+        }
+    }
+
+    .ayto-date-content{
+        padding-top: 30px;
+        position: relative;
+        .ayto-date-content-title{
+            margin: 0;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 30px;
+            font-size: 13px;
+            color: #444;
+            text-align: center;
+            line-height: 30px;
+            border-bottom: 1px solid #e9e9e9;
+            @include boxSizing;
+            font-weight: bold;
+        }
+    }
+
+    .ayto-date-calendar-list{
+        height: 400px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
+        .ayto-date-calendar-title{
+            margin: 0;
+            width: 100%;
+            height: 30px;
+            font-size: 13px;
+            color: #444;
+            text-align: center;
+            line-height: 30px;
+            border-bottom: 1px solid #e9e9e9;
+            @include boxSizing;
+            font-weight: bold;
+        }
+    }
+
+    .ayto-date-calendar{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+
+        li{
+            width: 100/7 * 1%;
+            height: 54px;
+            font-size: 12px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+        }
+
+    }
 }
-
-
