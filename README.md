@@ -1,3 +1,7 @@
+`git clone git@github.com:1304411gao/ayto_date.git`
+
+`cd ayto_date`
+
 `npm install `
 
 `npm run build => ayto_date.min.js`
