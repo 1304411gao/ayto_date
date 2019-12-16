@@ -1,4 +1,5 @@
 import _ from 'lodash'
 import './scss/main.scss'
+import AytoDate from "./js/main";
 
-import './js/main.js'
+window.AytoDate = AytoDate

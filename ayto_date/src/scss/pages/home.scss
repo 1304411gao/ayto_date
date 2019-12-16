@@ -6,6 +6,23 @@
     background-color: #fff;
     @include borderR(5px 5px 0 0);
     @include boxShadow(0 0 8px rgba(#000, .23));
+    opacity: 0;
+    @include tsm(translateY(100%));
+    visibility: hidden;
+    @include tsn;
+
+    .ayto-date-close{
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        font-size: 18px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+    }
 
     ul{
         padding-left: 0;
@@ -68,6 +85,7 @@
         height: 400px;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
+        position: relative;
 
         .ayto-date-calendar-title{
             margin: 0;
@@ -85,7 +103,6 @@
 
     .ayto-date-calendar{
         display: flex;
-        justify-content: space-between;
         flex-wrap: wrap;
         margin-bottom: 10px;
 
@@ -99,7 +116,38 @@
             justify-content: center;
             color: #666;
             font-weight: bold;
+            flex-wrap: wrap;
+
+
+            strong{
+                width: 100%;
+                display: block;
+                font-size: 10px;
+                margin-top: -15px;
+            }
         }
 
+        li.ayto-start-date{
+            background-color: rgba($themeColor, 1);
+            @include borderR(7px 0 0 7px);
+            color: #fff;
+        }
+        li.ayto-mark-date{
+            background-color: rgba($themeColor, .3);
+        }
+        li.ayto-end-date{
+            background-color: rgba($themeColor, 1);
+            @include borderR(0 7px 7px 0);
+            color: #fff;
+        }
+        .ayto-blank-li{
+            opacity: 0;
+        }
     }
+}
+
+.ayto-date-block-show{
+    opacity: 1;
+    @include tsm(translateY(0));
+    visibility: visible;
 }
