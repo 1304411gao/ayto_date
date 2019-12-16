@@ -196,8 +196,8 @@ class AytoDate {
                 if(_type == 'end' && i+1 > endDayNum){
                     break
                 }
-                html +=`<li data-date="${_year+'-'+_month+'-'+(i+1)}"><span>${i+1}</span></li>`
-                this.allDay.push(_year+'-'+_month+'-'+(i+1))
+                html +=`<li data-date="${_year+'-'+_month+'-'+(i+1 < 10? '0'+(i+1) : i+1)}"><span>${i+1}</span></li>`
+                this.allDay.push(_year+'-'+_month+'-'+(i+1 < 10? '0'+(i+1) : i+1))
             }
             return html
         }
