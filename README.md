@@ -24,3 +24,18 @@
 - onShowBefor: function 显示之前
 
 
+## 实例
+```
+let aytoDate = new AytoDate({
+    type: 'plural',
+    minDate: '2019-12-16',
+    maxDate: '2020-05-01',
+    startText: '入住',
+    endText: '离店',
+    switchMode: 'hidden',
+    onHideBefor: function(){
+        console.log(this.getValue())
+    }
+})
+```
+
