@@ -1,4 +1,6 @@
-#aytoDate
+`npm install `
+
+`npm run build => ayto_date.min.js`
 
 ## options参数
 
