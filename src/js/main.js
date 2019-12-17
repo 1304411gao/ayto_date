@@ -399,6 +399,15 @@ class AytoDate {
     getValue(){
         return this.value
     }
+    getDiffDay(){
+        if(this.value.length >= 2){
+            return dayjs(this.value[1]).diff(dayjs(this.value[0]),'day')
+        }else{
+            return '-'
+        }
+
+
+    }
     hide(){
         if(this.onHideBefor){
             this.onHideBefor()

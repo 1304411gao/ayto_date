@@ -4,18 +4,20 @@
 
 `npm install `
 
-`npm run build => ayto_date.min.js`
-
+`npm run build`
 ## options参数
 
-** 所传时间格式皆为YYYY-MM **
-1. initDate: 初始化居中的日期 默认为当天
-2. maxDate: 最大时间 默认为当前时间一年后
-3. minDate: 最小时间 默认为当前时间一年前
-4. type: 'single'选择单天 'plural'选择时间区间 默认为单天
-5. startText: 起始日期 默认为 "起始日期"
-6. endText: 结束日期 默认为 "结束日期"
-7. switchMode: 'remove' | 'hidden' 默认 'remove', 如果实例化数量较少建议使用hidden
+| 参数名 | 描述 | 格式 | 默认值 |
+| --- | --- | --- | --- |
+| switchMode | 组件隐藏方式从dom中消失: remove | css隐藏: hidden | String | 'remove' |
+| initDate | 初始化显示时居中的日期 | YYYY-MM-DD | 当前日期 |
+| maxDate | 可选择的最大日期 | YYYY-MM-DD | 当前时间一年后 |
+| minDate | 可选择的最小日期 | YYYY-MM-DD | 当前时间一年前 |
+| type | 选择单日:single | 时间区间: plural | String | 'single' |
+| startText | 当type为plural时，可以设定选择起始日期的文字描述 | String | '起始日期' |
+| endText | 当type为plural时，可以设定选择结束日期的文字描述 | String | '结束日期' |
+
+
 
 ## 方法
 - getValue 获取当前值

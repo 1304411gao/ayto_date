@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
+
 module.exports = {
     entry: './src/index.js',
     plugins: [
@@ -9,7 +10,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'My App',
             template: './src/index.html'
-        }),
+        })
     ],
     output: {
         filename: 'ayto_date.min.js',
