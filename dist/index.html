@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WDNMD</title>
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script>
+    //根据浏览器宽度给font-size赋值，rem。
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                window.clientWidth = docEl.clientWidth;
+                if (!window.clientWidth) return;
+                docEl.style.fontSize = 20 * (window.clientWidth / 320) + 'px';
+                window.base = 20 * (window.clientWidth / 320);
+            };
+        // Abort if browser does not support addEventListener
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+    //搞定辣鸡微信调整字体大小造成的错乱
+    (function () {
+        if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+            handleFontSize();
+        } else {
+            if (document.addEventListener) {
+                document.addEventListener("WeixinJSBridgeReady", handleFontSize, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("WeixinJSBridgeReady", handleFontSize);
+                document.attachEvent("onWeixinJSBridgeReady", handleFontSize);
+            }
+        }
+
+        function handleFontSize() {
+            // 设置网页字体为默认大小
+            WeixinJSBridge.invoke('setFontSizeCallback', {
+                'fontSize': 0
+            });
+            // 重写设置网页字体大小的事件
+            WeixinJSBridge.on('menu:setfont', function () {
+                WeixinJSBridge.invoke('setFontSizeCallback', {
+                    'fontSize': 0
+                });
+            });
+        }
+    })();
+    </script>
+</head>
+<body>
+<button class="btn1">打开</button>
+<button class="btn2">关闭</button>
+<script type="text/javascript" src="ayto_date.min.js"></script></body>
+<script type="text/javascript" src="ayto_date.min.js"></script>
+<script type="text/javascript" src="https://cdn.mofyi.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+let aytoDate = new AytoDate({
+    type: 'plural',
+    minDate: '2019-12-16',
+    maxDate: '2020-05-01',
+    startText: '入住',
+    endText: '离店',
+    switchMode: 'hidden',
+    onHideBefor: function(){
+        console.log(this.getValue())
+    }
+})
+
+$('.btn1').on('click', function(){
+    aytoDate.show()
+})
+$('.btn2').on('click', function(){
+    aytoDate.hide()
+})
+
+</script>
+</html>
