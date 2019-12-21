@@ -175,10 +175,10 @@ class AytoDate {
             let endDayNum = Number(dayjs(this.maxDate).format('D'))
 
             // 还想知道这个月的第一天是周几呢
-            let oneNumber = Number(dayjs(_year+'-'+_month).format('d')) + 1
+            let oneNumber = Number(dayjs(_year+'-'+_month).format('d'))
             // 如果是起始月 那就得重新计算这个值
             if(_type == 'start'){
-                oneNumber = Number(dayjs(this.minDate).format('d')) + 1
+                oneNumber = Number(dayjs(this.minDate).format('d'))
             }
 
             // ah 如果不是周日 就要根据oneNumber添加空白li
