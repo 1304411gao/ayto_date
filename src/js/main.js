@@ -104,7 +104,7 @@ class AytoDate {
             // 从起始时间开始生成
             let code =
                 `<div class="ayto-date-block" id="ayto-date-${this.stamp}">
-                <i class="fa fa-fw fa-close ayto-date-close"></i>
+                <i class="fa fa-fw fa-close ayto-date-close" style="display: none;"></i>
                 <div class="ayto-date-header">
                     <div class="ayto-date-title">选择日期</div>
                     <ul class="ayto-date-weeks">
@@ -140,6 +140,7 @@ class AytoDate {
                         })()}
                     </div>
                 </div>
+                <div class="ayto-date-bottom-line"><button class="ayto-date-sumbit">确定</button></div>
             </div>`
 
             this.htmlCode = code
@@ -262,6 +263,15 @@ class AytoDate {
             })
 
             this.node.children('.ayto-date-close').on('click', () => {
+                this.hide()
+            })
+            this.node.find('.ayto-date-sumbit').on('click', () => {
+                this.hide()
+            })
+            this.node.on('touchstart', (e) => {
+                e.stopPropagation()
+            })
+            $(document).on('touchstart', (e) => {
                 this.hide()
             })
         }
