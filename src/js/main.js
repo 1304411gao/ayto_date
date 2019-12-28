@@ -244,6 +244,10 @@ class AytoDate {
             let self = this
             let $li = this.node.find('.ayto-date-calendar').children('li')
             $li.on('click', function(){
+                if($(this).hasClass('ayto-blank-li')){
+                    return false
+                }
+
                 let date = $(this).data('date')
                 // 是否为单选
                 if(self.isSingle){
