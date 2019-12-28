@@ -5,10 +5,12 @@ class AytoDate {
 
     constructor(_options){
 
+        this.el = _options.el
         this.options = _options
         // 所有li的date属性
         this.allDay = []
         this.value = ''
+        this.valueTest = ''
         this.node = null
         this.monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
@@ -34,16 +36,19 @@ class AytoDate {
 
             this.onHideBefor = this.options.onHideBefor || null
             this.onShowBefor = this.options.onShowBefor || null
+            this.onSave = this.options.onSave || null
 
             // 选择单天 还是 时间区间 默认为单天呢
             this.isSingle = true
 
             if(_options.type == 'single'){
                 this.isSingle = true
-                this.value = ''
+                this.value = this.options.value || ''
+                this.valueTest = ''
             }else if(_options.type == 'plural'){
                 this.isSingle = false
-                this.value = []
+                this.value = this.options.value || []
+                this.valueTest = []
             }
         }
         // 初始化
@@ -104,7 +109,7 @@ class AytoDate {
             // 从起始时间开始生成
             let code =
                 `<div class="ayto-date-block" id="ayto-date-${this.stamp}">
-                <i class="fa fa-fw fa-close ayto-date-close" style="display: none;"></i>
+                <i class="fa fa-fw fa-close ayto-date-close"></i>
                 <div class="ayto-date-header">
                     <div class="ayto-date-title">选择日期</div>
                     <ul class="ayto-date-weeks">
@@ -266,13 +271,20 @@ class AytoDate {
                 this.hide()
             })
             this.node.find('.ayto-date-sumbit').on('click', () => {
-                this.hide()
+                this.save()
             })
             this.node.on('touchstart', (e) => {
                 e.stopPropagation()
             })
             $(document).on('touchstart', (e) => {
-                this.hide()
+
+                if(this.node.length && this.node.hasClass('ayto-date-block-show')){
+                    this.hide()
+                }
+            })
+            $(this.el).on('touchstart', (e) =>{
+                e.stopPropagation()
+                this.show()
             })
         }
         // 标记所选日期 (性能也许不好 看下面的方法)
@@ -419,6 +431,8 @@ class AytoDate {
 
     }
     hide(){
+        let v = JSON.parse(JSON.stringify(this.valueTest))
+        this.value = this.valueTest
         if(this.onHideBefor){
             this.onHideBefor()
         }
@@ -429,9 +443,23 @@ class AytoDate {
             this.node.remove()
             this.node = null
         }
-
+    }
+    save(){
+        if(this.onSave){
+            this.onSave()
+        }
+        if(this.options.switchMode == 'hidden'){
+            this.node.removeClass('ayto-date-block-show')
+        }else{
+            this.node.removeClass('ayto-date-block-show')
+            this.node.remove()
+            this.node = null
+        }
     }
     show(){
+        let v = JSON.parse(JSON.stringify(this.value))
+        this.valueTest = v
+        this.markData()
         if(this.options.switchMode == 'hidden'){
             if(this.onShowBefor){
                 this.onShowBefor()

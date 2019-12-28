@@ -9,11 +9,12 @@
 
 | 参数名 | 描述 | 格式 | 默认值 |
 | --- | --- | --- | --- |
-| switchMode | 组件隐藏方式从dom中消失: remove | css隐藏: hidden | String | 'remove' |
+| switchMode | 组件隐藏方式从dom中消失: remove | css隐藏: hidden | String |
 | initDate | 初始化显示时居中的日期 | YYYY-MM-DD | 当前日期 |
 | maxDate | 可选择的最大日期 | YYYY-MM-DD | 当前时间一年后 |
 | minDate | 可选择的最小日期 | YYYY-MM-DD | 当前时间一年前 |
-| type | 选择单日:single | 时间区间: plural | String | 'single' |
+| value | 默认值 | String \| array | '' \| [] |
+| type | 选择单日:single | 时间区间: plural | String |
 | startText | 当type为plural时，可以设定选择起始日期的文字描述 | String | '起始日期' |
 | endText | 当type为plural时，可以设定选择结束日期的文字描述 | String | '结束日期' |
 
@@ -28,6 +29,7 @@
 ## 回调函数
 - onHideBefor: function 隐藏之前
 - onShowBefor: function 显示之前
+- onSave: function 保存时
 
 
 ## 实例

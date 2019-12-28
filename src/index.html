@@ -60,22 +60,20 @@
 <script>
 
 let aytoDate = new AytoDate({
+    el: '.btn1',
     type: 'plural',
     minDate: '2019-12-16',
     maxDate: '2020-05-01',
+    value: ['2019-12-28', '2019-12-29'],
     startText: '入住',
     endText: '离店',
     switchMode: 'hidden',
+    onSave: function(){
+        console.log('save', this.getValue())
+    },
     onHideBefor: function(){
-        console.log(this.getValue())
-    }
-})
-
-$('.btn1').on('click', function(){
-    aytoDate.show()
-})
-$('.btn2').on('click', function(){
-    aytoDate.hide()
+        console.log('hide',this.getValue())
+    },
 })
 
 </script>
