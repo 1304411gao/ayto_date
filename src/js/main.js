@@ -7,6 +7,7 @@ class AytoDate {
 
         this.el = _options.el
         this.options = _options
+        this.type = _options.type
         // 所有li的date属性
         this.allDay = []
         this.value = ''
@@ -37,6 +38,7 @@ class AytoDate {
             this.onHideBefor = this.options.onHideBefor || null
             this.onShowBefor = this.options.onShowBefor || null
             this.onSave = this.options.onSave || null
+            this.onInit = this.options.onInit || null
 
             // 选择单天 还是 时间区间 默认为单天呢
             this.isSingle = true
@@ -57,7 +59,7 @@ class AytoDate {
             this.reset()
             this.validateSetting()
             this.createHtmlCode()
-
+            this.onInit()
         }
 
         // 验证 Options 过滤掉瞎传的日期参数
@@ -253,7 +255,6 @@ class AytoDate {
                 if(self.isSingle){
                     self.value = date
                 }else{
-
                     if(self.value.length == 0){
                         self.value.push(date)
                     }else if(self.value.length == 1){
@@ -269,6 +270,7 @@ class AytoDate {
                     }
                 }
                 self.markData()
+                self.setSaveBtnType()
             })
 
             this.node.children('.ayto-date-close').on('click', () => {
@@ -358,6 +360,16 @@ class AytoDate {
                     }
                 }
             }
+        }
+        // 控制确定按钮的状态
+        this.setSaveBtnType = () => {
+
+            if(self.isSingle){
+                this.value.length != ''? this.node.find('.ayto-date-sumbit').removeClass('disable') : this.node.find('.ayto-date-sumbit').addClass('disable')
+            }else{
+                this.value.length == 2? this.node.find('.ayto-date-sumbit').removeClass('disable') : this.node.find('.ayto-date-sumbit').addClass('disable')
+            }
+
         }
         // 定位到标记的位置
         this.active = () => {
@@ -449,6 +461,16 @@ class AytoDate {
         }
     }
     save(){
+        // 保存时要判断是否正确
+        if(this.type == 'plural'){
+            if(this.value.length != 2){
+                return false
+            }
+        }else if(this.type == 'single'){
+            if(this.value == ''){
+                return false
+            }
+        }
         if(this.onSave){
             this.onSave()
         }
@@ -463,6 +485,7 @@ class AytoDate {
     show(){
         let v = JSON.parse(JSON.stringify(this.value))
         this.valueTest = v
+        this.setSaveBtnType()
         this.markData()
         if(this.options.switchMode == 'hidden'){
             if(this.onShowBefor){

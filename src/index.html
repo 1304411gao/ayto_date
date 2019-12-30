@@ -68,6 +68,9 @@ let aytoDate = new AytoDate({
     startText: '入住',
     endText: '离店',
     switchMode: 'hidden',
+    onInit: function(){
+        console.log('init')
+    },
     onSave: function(){
         console.log('save', this.getValue())
     },

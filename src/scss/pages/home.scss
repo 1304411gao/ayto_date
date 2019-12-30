@@ -170,6 +170,9 @@
             font-size: 14px;
             @include borderR(5px)
         }
+        button.disable{
+            background-color: #ccc;
+        }
     }
 }
 
