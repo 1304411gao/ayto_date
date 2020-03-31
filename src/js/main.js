@@ -59,7 +59,9 @@ class AytoDate {
             this.reset()
             this.validateSetting()
             this.createHtmlCode()
-            this.onInit()
+            if(this.onInit){
+                this.onInit()
+            }
         }
 
         // 验证 Options 过滤掉瞎传的日期参数
@@ -504,7 +506,6 @@ class AytoDate {
             this.node.addClass('ayto-date-block-show')
         }
     }
-
 }
 
 export default AytoDate
