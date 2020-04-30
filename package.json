@@ -29,7 +29,7 @@
     "babel-plugin-import": "^1.13.0",
     "dayjs": "^1.8.17",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
