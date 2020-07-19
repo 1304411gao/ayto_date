@@ -30,7 +30,7 @@
     "dayjs": "^1.8.17",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
     "path": "^0.12.7",
